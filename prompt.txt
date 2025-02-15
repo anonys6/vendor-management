@@ -1,0 +1,695 @@
+i have made this app ui, but i want to implement all the real functionality that the app need, i am going to give you all the code, write complete code for everything, all the features and requirement mentioned in the question
+
+clay@clay ~/P/m/version1> tree -I node_modules
+.
+├── components.json
+├── eslint.config.js
+├── index.html
+├── package.json
+├── package-lock.json
+├── pnpm-lock.yaml
+├── postcss.config.js
+├── src
+│   ├── App.css
+│   ├── App.tsx
+│   ├── components
+│   │   ├── MoveUserDialog.tsx
+│   │   ├── ui
+│   │   │   ├── accordion.tsx
+│   │   │   ├── alert-dialog.tsx
+│   │   │   ├── alert.tsx
+│   │   │   ├── aspect-ratio.tsx
+│   │   │   ├── avatar.tsx
+│   │   │   ├── badge.tsx
+│   │   │   ├── breadcrumb.tsx
+│   │   │   ├── button.tsx
+│   │   │   ├── calendar.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── carousel.tsx
+│   │   │   ├── chart.tsx
+│   │   │   ├── checkbox.tsx
+│   │   │   ├── collapsible.tsx
+│   │   │   ├── command.tsx
+│   │   │   ├── context-menu.tsx
+│   │   │   ├── dialog.tsx
+│   │   │   ├── drawer.tsx
+│   │   │   ├── dropdown-menu.tsx
+│   │   │   ├── form.tsx
+│   │   │   ├── hover-card.tsx
+│   │   │   ├── input-otp.tsx
+│   │   │   ├── input.tsx
+│   │   │   ├── label.tsx
+│   │   │   ├── menubar.tsx
+│   │   │   ├── navigation-menu.tsx
+│   │   │   ├── pagination.tsx
+│   │   │   ├── popover.tsx
+│   │   │   ├── progress.tsx
+│   │   │   ├── radio-group.tsx
+│   │   │   ├── resizable.tsx
+│   │   │   ├── scroll-area.tsx
+│   │   │   ├── select.tsx
+│   │   │   ├── separator.tsx
+│   │   │   ├── sheet.tsx
+│   │   │   ├── skeleton.tsx
+│   │   │   ├── slider.tsx
+│   │   │   ├── sonner.tsx
+│   │   │   ├── switch.tsx
+│   │   │   ├── table.tsx
+│   │   │   ├── tabs.tsx
+│   │   │   ├── textarea.tsx
+│   │   │   ├── toaster.tsx
+│   │   │   ├── toast.tsx
+│   │   │   ├── toggle-group.tsx
+│   │   │   ├── toggle.tsx
+│   │   │   └── tooltip.tsx
+│   │   └── UserCard.tsx
+│   ├── data
+│   │   └── mockData.ts
+│   ├── hooks
+│   │   └── use-toast.ts
+│   ├── index.css
+│   ├── lib
+│   │   └── utils.ts
+│   ├── main.tsx
+│   ├── types
+│   │   └── index.ts
+│   └── vite-env.d.ts
+├── tailwind.config.js
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
+
+8 directories, 70 files
+clay@clay ~/P/m/version1> 
+
+package.json
+
+{
+  "name": "vite-react-typescript-starter",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
+    "@radix-ui/react-accordion": "^1.2.0",
+    "@radix-ui/react-alert-dialog": "^1.1.1",
+    "@radix-ui/react-aspect-ratio": "^1.1.0",
+    "@radix-ui/react-avatar": "^1.1.0",
+    "@radix-ui/react-checkbox": "^1.1.1",
+    "@radix-ui/react-collapsible": "^1.1.0",
+    "@radix-ui/react-context-menu": "^2.2.1",
+    "@radix-ui/react-dialog": "^1.1.1",
+    "@radix-ui/react-dropdown-menu": "^2.1.1",
+    "@radix-ui/react-hover-card": "^1.1.1",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-menubar": "^1.1.1",
+    "@radix-ui/react-navigation-menu": "^1.2.0",
+    "@radix-ui/react-popover": "^1.1.1",
+    "@radix-ui/react-progress": "^1.1.0",
+    "@radix-ui/react-radio-group": "^1.2.0",
+    "@radix-ui/react-scroll-area": "^1.1.0",
+    "@radix-ui/react-select": "^2.1.1",
+    "@radix-ui/react-separator": "^1.1.0",
+    "@radix-ui/react-slider": "^1.2.0",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-switch": "^1.1.0",
+    "@radix-ui/react-tabs": "^1.1.0",
+    "@radix-ui/react-toast": "^1.2.1",
+    "@radix-ui/react-toggle": "^1.1.0",
+    "@radix-ui/react-toggle-group": "^1.1.0",
+    "@radix-ui/react-tooltip": "^1.1.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.0.0",
+    "date-fns": "^3.6.0",
+    "embla-carousel-react": "^8.3.0",
+    "input-otp": "^1.2.4",
+    "lucide-react": "^0.446.0",
+    "next-themes": "^0.3.0",
+    "react": "^18.3.1",
+    "react-day-picker": "^8.10.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.53.0",
+    "react-resizable-panels": "^2.1.3",
+    "recharts": "^2.12.7",
+    "sonner": "^1.5.0",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7",
+    "vaul": "^1.0.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.11.1",
+    "@types/node": "^22.7.3",
+    "@types/react": "^18.3.9",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.11.1",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.12",
+    "globals": "^15.9.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.7.0",
+    "vite": "^5.4.8"
+  }
+}
+
+
+main.tsx
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.tsx';
+import './index.css';
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+
+app.tsx
+import { useState } from 'react';
+import { Search } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { UserCard } from '@/components/UserCard';
+import { MoveUserDialog } from '@/components/MoveUserDialog';
+import { mockUsers } from '@/data/mockData';
+import { User } from '@/types';
+
+function App() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const handleMoveUser = (userId: string, newParentId: string) => {
+    console.log(`Moving user ${userId} to parent ${newParentId}`);
+    // Implement the actual move logic here
+  };
+
+  const renderUserHierarchy = (users: User[]) => {
+    return users.map((user) => (
+      <div key={user.id} className="space-y-4">
+        <UserCard
+          user={user}
+          onMoveClick={(user) => {
+            setSelectedUser(user);
+            setIsDialogOpen(true);
+          }}
+        />
+        {user.children && user.children.length > 0 && (
+          <div className="ml-8 space-y-4 relative before:absolute before:left-0 before:top-0 before:bottom-0 before:w-px before:bg-gray-200">
+            {renderUserHierarchy(user.children)}
+          </div>
+        )}
+      </div>
+    ));
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 p-8 w-[100vw]">
+      <div className="max-w-7xl mx-auto space-y-6">
+        <div className="flex justify-between items-center">
+          <h1 className="text-2xl font-bold">My Team</h1>
+          <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1">
+              <div className="w-3 h-3 rounded-full bg-purple-600"></div>
+              <span className="text-sm">Admin</span>
+            </div>
+            <div className="flex items-center space-x-1">
+              <div className="w-3 h-3 rounded-full bg-red-600"></div>
+              <span className="text-sm">Site Admin</span>
+            </div>
+            <div className="flex items-center space-x-1">
+              <div className="w-3 h-3 rounded-full bg-teal-600"></div>
+              <span className="text-sm">Group Vendor</span>
+            </div>
+            <div className="flex items-center space-x-1">
+              <div className="w-3 h-3 rounded-full bg-pink-600"></div>
+              <span className="text-sm">Sub Vendor</span>
+            </div>
+            <div className="flex items-center space-x-1">
+              <div className="w-3 h-3 rounded-full bg-rose-600"></div>
+              <span className="text-sm">Deployment Associate</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex space-x-4">
+          <div className="relative flex-1">
+            <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
+            <Input
+              placeholder="Search by name, email or Phone No."
+              className="pl-8"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+          <Select>
+            <SelectTrigger className="w-48">
+              <SelectValue placeholder="Select Tags" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Tags</SelectItem>
+              <SelectItem value="active">Active</SelectItem>
+              <SelectItem value="inactive">Inactive</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="space-y-6">
+          {renderUserHierarchy(mockUsers)}
+        </div>
+
+        <MoveUserDialog
+          isOpen={isDialogOpen}
+          onClose={() => setIsDialogOpen(false)}
+          user={selectedUser}
+          onMove={handleMoveUser}
+        />
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+MoveUserDialog.tsx
+import { useState } from 'react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Search } from 'lucide-react';
+import { MoveUserDialogProps } from '@/types';
+
+const siteAdmins = [
+  'site-admin',
+  'Megha',
+  'DCO Trial acc',
+  'Newsiteadmin',
+  'Newsite admin 2',
+];
+
+export function MoveUserDialog({ isOpen, onClose, user, onMove }: MoveUserDialogProps) {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedAdmin, setSelectedAdmin] = useState('');
+
+  const filteredAdmins = siteAdmins.filter(admin =>
+    admin.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const handleMove = () => {
+    if (user && selectedAdmin) {
+      onMove(user.id, selectedAdmin);
+      onClose();
+    }
+  };
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>Move {user?.name}</DialogTitle>
+        </DialogHeader>
+        <div className="space-y-4">
+          <RadioGroup defaultValue="parent" className="space-y-2">
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="parent" id="parent" />
+              <Label htmlFor="parent">Change Parent</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="role" id="role" />
+              <Label htmlFor="role">Change Role</Label>
+            </div>
+          </RadioGroup>
+
+          <div className="space-y-2">
+            <Label>Select Site Admin</Label>
+            <div className="relative">
+              <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
+              <Input
+                placeholder="Search by name"
+                className="pl-8"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+            <div className="max-h-48 overflow-y-auto space-y-2 mt-2">
+              {filteredAdmins.map((admin) => (
+                <div
+                  key={admin}
+                  className={`p-2 rounded cursor-pointer ${
+                    selectedAdmin === admin ? 'bg-gray-100' : ''
+                  }`}
+                  onClick={() => setSelectedAdmin(admin)}
+                >
+                  {admin}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex justify-end space-x-2">
+            <Button variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button onClick={handleMove}>Move</Button>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+UserCard.tsx
+import { User } from '@/types';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Edit } from 'lucide-react';
+
+interface UserCardProps {
+  user: User;
+  onMoveClick: (user: User) => void;
+}
+
+export function UserCard({ user, onMoveClick }: UserCardProps) {
+  const getRoleColor = (role: string) => {
+    switch (role) {
+      case 'admin':
+        return 'bg-purple-600';
+      case 'site-admin':
+        return 'bg-red-600';
+      case 'group-vendor':
+        return 'bg-teal-600';
+      case 'sub-vendor':
+        return 'bg-pink-600';
+      case 'deployment-associate':
+        return 'bg-rose-600';
+      default:
+        return 'bg-gray-600';
+    }
+  };
+
+  return (
+    <Card className="w-full max-w-sm">
+      <CardContent className="p-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white ${getRoleColor(user.role)}`}>
+              {user.name.substring(0, 2).toUpperCase()}
+            </div>
+            <div>
+              <h3 className="font-medium">{user.name}</h3>
+              <p className="text-sm text-gray-500">{user.email}</p>
+            </div>
+          </div>
+          <Button variant="ghost" size="icon" onClick={() => onMoveClick(user)}>
+            <Edit className="h-4 w-4" />
+          </Button>
+        </div>
+        {user.role !== 'admin' && user.role !== 'site-admin' && (
+          <Button
+            variant="outline"
+            className="w-full mt-4"
+            onClick={() => onMoveClick(user)}
+          >
+            Move Profile
+          </Button>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
+mockData.ts
+import { User } from '@/types';
+
+export const mockUsers: User[] = [
+  {
+    id: '1',
+    name: 'DeepakTesting',
+    email: 'deepak.hosters@gmail.com',
+    role: 'site-admin',
+    children: [
+      {
+        id: '2',
+        name: 'DeepakTesting',
+        email: 'newtest@mailinator.com',
+        role: 'group-vendor',
+        parentId: '1',
+        children: [
+          {
+            id: '5',
+            name: 'Demo Vendor 2',
+            email: 'vendor2@mail.com',
+            role: 'sub-vendor',
+            parentId: '2'
+          }
+        ]
+      },
+      {
+        id: '3',
+        name: 'test',
+        email: 'test@mailinator.com',
+        role: 'group-vendor',
+        parentId: '1'
+      },
+      {
+        id: '4',
+        name: 'Arunkumar QA',
+        email: 'arunkumar.c@gmail.com',
+        role: 'group-vendor',
+        parentId: '1'
+      }
+    ]
+  },
+  {
+    id: '6',
+    name: 'DeepakTesting1',
+    email: 'deepak3472@gmail.com',
+    role: 'site-admin',
+    children: [
+      {
+        id: '7',
+        name: 'MeghaTesting',
+        email: 'megha@test.com',
+        role: 'group-vendor',
+        parentId: '6',
+        children: [
+          {
+            id: '8',
+            name: 'Megha SubVendor1',
+            email: 'meghana.bm@movemyrc.com',
+            role: 'sub-vendor',
+            parentId: '7'
+          }
+        ]
+      }
+    ]
+  }
+];
+
+types/index.ts
+export type UserRole = 'admin' | 'site-admin' | 'group-vendor' | 'sub-vendor' | 'deployment-associate';
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: UserRole;
+  parentId?: string;
+  children?: User[];
+}
+
+export interface MoveUserDialogProps {
+  isOpen: boolean;
+  onClose: () => void;
+  user: User | null;
+  onMove: (userId: string, newParentId: string) => void;
+}
+
+now help me complete this app, write the full code of everything, complete all the requrements:
+requirements:
+Problem statement:
+Implement your solution in code. Follow best practices for coding standards, such as meaningful variable names,
+proper indentation, and comments where necessary.
+
+Break down the problem into smaller functions or modules to improve code readability and maintainability.
+
+
+2. Implement the wireFrame
+
+
+
+Screenshots are for reference only you can build your own user interface.
+
+Using any framework like angular,reactjs,etc will be a plus point.
+
+Use mock data to implement the feature if api is not available.
+
+
+3. Document Your Code :
+
+
+
+Consider adding documentation or comments to explain the logic and reusable parts, especially for complex parts or
+algorithms.
+
+
+4. Submit Your Solution:
+
+
+
+Once you're satisfied with your code and it meets all the requirements, submit your solution on GitHub and share the
+GitHub link.
+
+
+5. Demonstration:
+
+
+
+Include a demonstration video showcasing key features of the ride-sharing platform. - Alternatively, use screenshots
+to visually highlight the user interface and functionality.
+Plus Points in Implementation (Overall Evaluation Criteria):
+1.Complexity Estimation:
+
+Conduct a thorough analysis of time and space complexity in the system.
+
+Utilize efficient algorithms and data structures to optimize both time and space requirements.
+
+Regularly monitor and analyze resource consumption for cost-effective scaling.
+
+
+2. User Experience:
+
+
+
+Is the user interface intuitive and easy to navigate?
+
+Does the system provide feedback to users regarding successful or unsuccessful operations?
+
+
+3. Error Handling:
+
+
+
+Does the system handle errors gracefully, providing informative error messages to users?
+
+Are there checks in place to prevent invalid operations or data inconsistencies?
+
+
+4. Performance:
+
+
+
+How efficiently does the project perform its tasks, especially when handling large datasets or high loads?
+
+Is there any noticeable lag or delay in response times, especially when handling a large number of operations?
+5.Scalability:
+
+Can the system accommodate an increasing number of users without significant performance degradation?
+
+Is the system designed to be easily scalable and adaptable to changing requirements or business needs?
+6.Functionality:
+
+Does the project fulfill its intended purpose effectively?
+
+Are all essential features and requirements implemented?
+
+Is the project user-friendly and intuitive to use?
+Vendor Cab and Driver Onboarding & Vendor Hierarchy
+Management:
+A Vendor Cab and Driver Onboarding System enables seamless multi-level vendor management, vehicle onboarding,
+document verification, and hierarchical access control. This system ensures that Super Vendors and Sub Vendors can
+efficiently manage fleets, onboard drivers, and maintain compliance, while providing structured delegation capabilities.
+I. Multi-Level Vendor Hierarchy
+To support large-scale fleet operations, the system allows vendors to operate at multiple hierarchical levels, ensuring
+structured access control and management.
+✅ Flexible N-Level Hierarchy
+● Vendors can operate at multiple levels, forming a parent-child relationship (e.g., Super Vendor → Regional Vendor →
+City Vendor → Local Vendor).
+● This hierarchy ensures that fleet management responsibilities are distributed, preventing operational bottlenecks.
+✅ Role-Based Access Management
+● Each vendor level has specific roles and permissions, ensuring controlled access to vehicles, drivers, and fleet
+operations.
+● Super Vendors can define access policies for their sub-vendors.
+🔹 Example Use Case:
+● A National Fleet Operator (Super Vendor) has Regional Vendors, who in turn manage City-Level Vendors handling
+local cabs and drivers.
+🔹 Outcome:
+● Ensures scalability for large vendor networks.
+● Prevents unauthorized access by implementing a structured hierarchy.
+II. Super Vendor Access & Delegation
+Super Vendors have complete control over sub-vendors, fleets, and driver onboarding, ensuring centralized management.
+✅ Access Delegation to Sub Vendors
+● Super Vendors can grant specific access permissions to sub-vendors to manage:
+○ Fleet onboarding & assignments
+○ Driver onboarding & verification
+○ Operational tasks (booking management, payments, compliance tracking, etc.)
+✅ Delegation of Authority
+● A Super Vendor can authorize a sub-vendor to act on their behalf for certain operations.
+● The delegated sub-vendor can perform all or selected administrative actions under the Super Vendor's name.
+✅ Controlled Delegation Rights
+● The Super Vendor can:
+○ Enable or revoke delegation at any time.
+○ Restrict access to specific functions (e.g., sub-vendor can onboard drivers but not process payments).
+🔹 Example Use Case:
+● A Super Vendor managing a large fleet can delegate responsibilities to a Regional Vendor, who further assigns tasks
+to City-Level Vendors.
+● The Super Vendor ensures smooth workflow automation without handling every small task manually.
+🔹 Outcome:
+● Reduces administrative overhead for Super Vendors.
+● Ensures continuity of operations even if the Super Vendor is unavailable.
+III. Sub-Vendor Fleet & Driver Management
+Sub Vendors are responsible for managing vehicle onboarding, driver assignments, and compliance documentation.
+✅ Vehicle & Driver Onboarding
+● Sub Vendors can onboard:
+○ Cabs & Commercial Vehicles – Enter vehicle details such as registration number, model, seating capacity,
+fuel type, etc.
+○ Drivers – Add drivers and assign them to specific vehicles.
+✅ Driver Document Upload
+● Sub Vendors can upload essential driver documents:
+○ Driving License (DL)
+○ Vehicle Registration Certificate (RC)
+○ Permit & Pollution Certificate.
+🔹 Example Use Case:
+● A City-Level Vendor manages local fleet onboarding and assigns drivers to cabs.
+● The system flags expired documents and prevents non-compliant vehicles from operating.
+🔹 Outcome:
+● Ensures regulatory compliance with up-to-date documentation.
+● Reduces manual document tracking efforts with automated reminders.
+IV. Super Vendor’s Complete Control Over Sub-Vendors
+Super Vendors have full visibility and control over their entire sub-vendor network, including fleet status, driver assignments,
+and compliance reports.
+✅ Centralized Dashboard for Super Vendors
+● A single dashboard provides:
+○ Real-time view of all sub-vendors.
+○ Fleet status updates (number of active/inactive vehicles).
+○ Pending document verifications & approvals.
+○ Driver availability tracking.
+✅ Super Vendor Action Control
+● The Super Vendor can override sub-vendor actions, ensuring compliance and smooth operations.
+● System-wide reports & analytics help optimize fleet performance.
+🔹 Example Use Case:
+● A Super Vendor detects compliance issues (e.g., missing insurance documents) and temporarily disables vehicle
+operations until resolved.
+🔹 Outcome:
+● Maintains operational consistency & regulatory compliance across multiple vendor levels.
+● Gives Super Vendors full visibility and authority over their entire fleet network.
+V. Screenshots:
+Hierarchy tree:
+Move lower hierarchy user to other manager:
+Search manager and move:

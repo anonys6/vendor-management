@@ -1,0 +1,9 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.active {
+  font-weight: 700 !important;
+}
