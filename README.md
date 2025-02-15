@@ -70,14 +70,6 @@ src/
 └── services/     # API/Service layer
 ```
 
-## User Roles
-
-- **Admin** (Purple) - System administrators
-- **Site Admin** (Red) - Site level administrators
-- **Group Vendor** (Teal) - Vendor group managers
-- **Sub Vendor** (Pink) - Individual vendors
-- **Deployment Associate** (Rose) - Field workers
-
 ## Contributing
 
 1. Fork the repository
