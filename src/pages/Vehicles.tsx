@@ -31,12 +31,14 @@ export const Vehicles: React.FC = () => {
         register,
         handleSubmit,
         reset,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm<VehicleFormData>({
         resolver: zodResolver(vehicleSchema),
     });
 
-    const onSubmit = (data: VehicleFormData) => {
+    const onSubmit = async (data: VehicleFormData) => {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
         dispatch({
             type: 'ADD_VEHICLE',
             payload: {
@@ -89,8 +91,8 @@ export const Vehicles: React.FC = () => {
                                     <Button variant="outline" onClick={() => setOpen(false)}>
                                         Cancel
                                     </Button>
-                                    <Button type="submit" className="ml-2">
-                                        Submit
+                                    <Button disabled={isSubmitting} type="submit" className="ml-2">
+                                        {isSubmitting ? 'Adding...' : 'Add Vehicle'}
                                     </Button>
                                 </div>
                             </form>

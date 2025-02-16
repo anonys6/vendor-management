@@ -30,12 +30,14 @@ export const Drivers: React.FC = () => {
         register,
         handleSubmit,
         reset,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm<DriverFormData>({
         resolver: zodResolver(driverSchema),
     });
 
-    const onSubmit = (data: DriverFormData) => {
+    const onSubmit = async (data: DriverFormData) => {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
         dispatch({
             type: 'ADD_DRIVER',
             payload: {
@@ -89,7 +91,7 @@ export const Drivers: React.FC = () => {
                                         Cancel
                                     </Button>
                                     <Button type="submit" className="ml-2">
-                                        Submit
+                                        {isSubmitting ? 'Adding...' : 'Add Driver'}
                                     </Button>
                                 </div>
                             </form>
